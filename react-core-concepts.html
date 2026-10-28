@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React Core Concepts Practice</title>
+
+    <!-- React, ReactDOM, and Babel -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+
+<body>
+    <!--
+    A component is a reusable piece of a user interface.
+    Props are values passed from a parent component to a child component.
+    State stores data that can change while the application runs.
+    When state is updated with its setter function, React re-renders the component.
+    This allows the interface to display the latest data after user interactions.
+  -->
+
+    <div id="root"></div>
+
+    <script type="text/babel">
+        // Component that receives a name through props
+        function Greeting(props) {
+            return <h2>Welcome aboard, {props.name}!</h2>;
+        }
+
+        // Component that manages state with useState
+        function Counter() {
+            const [count, setCount] = React.useState(0);
+
+            return (
+                <section>
+                    <h2>Counter Example</h2>
+                    <p>Current count: {count}</p>
+                    <button onClick={() => setCount(count + 1)}>
+                        Increment
+                    </button>
+                </section>
+            );
+        }
+
+        // Main component that combines the other components
+        function App() {
+            return (
+                <main>
+                    <h1>React Core Concepts</h1>
+                    <Greeting name="Daniel" />
+                    <Counter />
+                </main>
+            );
+        }
+
+        // Render the App component inside the root element
+        const root = ReactDOM.createRoot(
+            document.getElementById('root')
+        );
+
+        root.render(<App />);
+    </script>
+</body>
+
+</html>

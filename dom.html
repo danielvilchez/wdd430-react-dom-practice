@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Direct DOM Manipulation vs. React</title>
+
+    <!-- React library -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+    <!-- Babel transforms JSX into JavaScript -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+
+<body>
+    <h1>Direct DOM Manipulation vs. React</h1>
+    <p>Imperative and declarative rendering with the same outcome.</p>
+
+    <h2>Imperative</h2>
+    <article id="direct-news"></article>
+
+    <h2>Declarative</h2>
+    <article id="react-news"></article>
+
+    <!-- Direct DOM Manipulation -->
+    <script>
+        const newsArticle = document.getElementById('direct-news');
+        const newParagraph = document.createElement('p');
+        const text = "Breaking news: Imperative programming!";
+        const headerContent = document.createTextNode(text);
+
+        newParagraph.appendChild(headerContent);
+        newsArticle.appendChild(newParagraph);
+    </script>
+
+    <!-- React DOM Manipulation -->
+    <script type="text/babel">
+        const NewsComponent = () => {
+            return <p>Breaking news: React is awesome!</p>;
+        };
+
+        const domNode = document.getElementById('react-news');
+        const root = ReactDOM.createRoot(domNode);
+
+        root.render(<NewsComponent />);
+    </script>
+</body>
+
+</html>
